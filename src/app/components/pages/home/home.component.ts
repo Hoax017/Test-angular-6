@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../../services/user/user.service';
+import { User } from '../../../entities/user.entity';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+	selector: 'app-home',
+	templateUrl: './home.component.html',
+	styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
-  constructor() { }
+	users:Array<User> = []
 
-  users:Array<string> = [];
+	constructor (private UserService: UserService) {
+		this.users = UserService.users
+	}
 
-  ngOnInit() {
-		this.users = ['Jean', 'Julie', 'Ahrieane', 'Fred'];
-  }
+	addUser = (newUser) => {
+		this.UserService.addUser(newUser)
+		newUser.value = ""
+	}
 
-  addUser = (newUser) => {
-  	this.users.push(newUser.value);
-  	newUser.value = ""
-  }
-
-
+	ngOnInit() {}
 }

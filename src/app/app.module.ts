@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { rootRouterConfig } from './app.routes';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/pages/home/home.component';
+import { UserService } from './services/user/user.service';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -12,10 +14,11 @@ import { HomeComponent } from './components/pages/home/home.component';
     HomeComponent
   ],
   imports: [
+  HttpClientModule,
     BrowserModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false })
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
